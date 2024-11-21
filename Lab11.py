@@ -10,7 +10,7 @@ def main():
         name = input("What is the student's name: ")
         name = name.lower() #to avoid slipups
         students = {} #to assign names to IDs
-        with open("data/data/students.txt") as file:
+        with open("data/students.txt") as file:
             for line in file:
                 student_id = line[:3] #index 0,1,2 are id
                 studentName = (line[3:].strip()).lower() #have to remove blank spaces
@@ -23,7 +23,7 @@ def main():
             student_id = students[name]
             student_score = 0
             assignments = {}
-        with open("data/data/assignments.txt") as file:
+        with open("data/assignments.txt") as file:
             lines = file.readlines()
             for i in range(0, len(lines),3): #so that you can go every 3 lines
                 assignment_name = lines[i].strip()
@@ -31,8 +31,8 @@ def main():
                 assignmentPoints = float((lines[i + 2].strip())) #points on last
                 #removed int here
                 assignments[assignment_ID] = assignmentPoints
-        for fileTitle in os.listdir("data/data/submissions"):
-            with open(f"data/data/submissions/{fileTitle}") as file: #to do for each of the million foles
+        for fileTitle in os.listdir("data/submissions"):
+            with open(f"data/submissions/{fileTitle}") as file: #to do for each of the million foles
                 for line in file:
                     fileStudentID, fileassignment_ID, score = line.strip().split("|") #split the line up by the |
                     if fileStudentID == student_id:
@@ -43,7 +43,7 @@ def main():
         name = input("What is the assignment name: ")
         name = name.lower()
         assignments = {}
-        with open("data/data/assignments.txt") as file:
+        with open("data/assignments.txt") as file:
             lines = file.readlines()
             for i in range(0, len(lines), 3): #again, go by groups of 3
                 assignment_name = (lines[i].strip()).lower()
@@ -55,8 +55,8 @@ def main():
         else:
             assignment_ID = assignments[name]["ID"] #to get into nested dictionary
             scores = [] #to hold scores for assignment
-            for fileTitle in os.listdir("data/data/submissions"):
-                with open(f"data/data/submissions/{fileTitle}") as file:
+            for fileTitle in os.listdir("data/submissions"):
+                with open(f"data/submissions/{fileTitle}") as file:
                     for line in file:
                         fileStudentID, fileassignment_ID, score = line.strip().split("|")
                         if fileassignment_ID == assignment_ID:
@@ -73,7 +73,7 @@ def main():
         name = name.lower()
         assignments = {}
         #Copy from last option
-        with open("data/data/assignments.txt") as file:
+        with open("data/assignments.txt") as file:
             lines = file.readlines()
             for i in range(0, len(lines), 3): #again, go by groups of 3
                 assignment_name = (lines[i].strip()).lower()
@@ -85,7 +85,7 @@ def main():
         else:
             assignment_ID = assignments[name]["ID"]
             scores = []
-            for fileTitle in os.listdir("data/data/submissions"):
+            for fileTitle in os.listdir("data/submissions"):
                 with open(f"data/data/submissions/{fileTitle}") as file:
                     for line in file:
                         fileStudentID, fileassignment_ID, score = line.strip().split("|")
